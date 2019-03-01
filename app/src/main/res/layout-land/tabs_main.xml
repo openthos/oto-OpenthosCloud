@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet_container"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+
+    >
+
+
+    <LinearLayout
+        android:id="@+id/left_menu_view"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentTop="true"
+                android:background="#f1f1f1" />
+
+            <ImageView
+                android:id="@+id/title_iv_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/search" />
+
+            <EditText
+                android:id="@+id/title_et_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/title_iv_search"
+                android:background="@null"
+                android:hint="@string/openthos_title_search"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#f1f1f1" />
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/left_list_view"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent" />
+        <!-- placeholder, empty except on L -->
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:background="#f1f1f1" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <android.support.design.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/main_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+            <!--<android.support.design.widget.AppBarLayout-->
+                <!--android:layout_marginTop="@dimen/openthos_left_button_size"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content" >-->
+
+
+
+            <include
+                layout="@layout/toolbar_actionbar" />
+
+                <!--<ListView-->
+                    <!--android:id="@+id/openthos_tv_database"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/sliding_tabs"
+                    style="@style/TabLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_scrollFlags="scroll|enterAlways"
+                    app:tabGravity="center"
+                    app:tabMode="scrollable"
+                    android:visibility="gone"
+                    app:tabSelectedTextColor="@color/fancy_orange"
+                    app:tabTextAppearance="@style/TabTextAppearancce" />
+            <!--</android.support.design.widget.AppBarLayout>-->
+        </android.support.design.widget.CoordinatorLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <ImageView
+                android:id="@+id/right_icon_null"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/empty_icon" />
+
+            <TextView
+                android:id="@+id/tv_database"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/oenthos_database_select"
+                android:layout_alignBottom="@+id/right_icon_null" />
+        </RelativeLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_weight="1"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    </LinearLayout>
+</LinearLayout>
