@@ -2766,7 +2766,7 @@ public class BrowserActivity extends BaseActivity
         if (!Utils.isNetworkOn() || !forceRefresh) {
 
             List<SeafRepo> repos = getDataManager().getReposFromCache();
-            Log.i("refer-------", "repos" + repos.size());
+//            Log.i("refer-------", "repos" + repos.size());
             if (repos != null) {
 //                if (mRefreshType == REFRESH_ON_PULL) {
 //                    refreshLayout.setRefreshing(false);

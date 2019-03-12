@@ -4,11 +4,11 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -16,8 +16,6 @@ import android.widget.Toast;
 
 import com.google.common.collect.Lists;
 import com.seafile.seadroid2.R;
-import com.seafile.seadroid2.SeafException;
-import com.seafile.seadroid2.data.DataManager;
 import com.seafile.seadroid2.data.SeafCachedFile;
 import com.seafile.seadroid2.data.SeafDirent;
 import com.seafile.seadroid2.data.SeafGroup;
@@ -25,7 +23,6 @@ import com.seafile.seadroid2.data.SeafItem;
 import com.seafile.seadroid2.data.SeafRepo;
 import com.seafile.seadroid2.transfer.DownloadTaskInfo;
 import com.seafile.seadroid2.ui.activity.BrowserActivity;
-import com.seafile.seadroid2.ui.dialog.RecycleMenuDialog;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -70,10 +67,11 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         this.viewType = type;
         if (items == null) items = new ArrayList<>();
         Inflater = LayoutInflater.from(context);
-        isFocus = new ArrayList<>();
-        for (int i = 0; i< items.size(); i++){
-            isFocus.add(false);
-        }
+//        isFocus = new ArrayList<>();
+//        for (int i = 0; i< items.size(); i++){
+//            isFocus.add(false);
+//        }
+
     }
 
     public void add(SeafItem entry) {
@@ -89,6 +87,8 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         return items == null ? 0 : items.size();
     }
 
+
+//    mGestureDetector = new GestureDetector(new RecycleItemOnTuch());
     @NonNull
     @Override
     public RightHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -124,7 +124,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         TextView mTextViewSize;
         ImageView mViewIcon;
         RelativeLayout mRelativeLayout;
-
+        CheckBox mCheckBox;
         public RightHolder(View itemView) {
             super(itemView);
             if (isLeftRecycle(viewType)) {
@@ -135,6 +135,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
                 mRelativeLayout = (RelativeLayout) itemView.findViewById(R.id.item_list_right);
                 mTextView = (TextView) itemView.findViewById(R.id.right_text_item);
                 mViewIcon = (ImageView) itemView.findViewById(R.id.recycler_image_item);
+                mCheckBox = (CheckBox)itemView.findViewById(R.id.right_view_checkbox);
             }
         }
     }
@@ -164,17 +165,11 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         return newList.equals(oldList);
     }
 
-
 //    GestureDetector mGestureDetector;
-
     private OnItemClickListener onRecyclerViewItemClickListener;
-
     public interface OnItemClickListener {
-
 //        void onClick(View v,SeafItem position);
-//
         void onRecycleRightMouseClick(int x, int y, SeafItem position, MotionEvent event, View v);
-
         void onTunchListener(int x, int y, SeafItem position, MotionEvent event, View v);
     }
 
