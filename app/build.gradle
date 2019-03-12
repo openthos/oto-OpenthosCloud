@@ -45,19 +45,19 @@ android {
 //            keyAlias System.console().readLine("\n\$ Enter key alias: ")
 //            keyPassword System.console().readPassword("\n\$ Enter key password: ").toString()
 
-            def props = new Properties()
-            props.load(new FileInputStream(project.file("D:/work_package/2018-12-23-openthos-cloud/key.store")))
-//            storeFile project.file(props.keyStore)
-            storePassword props.openthos123
-            keyAlias props.oto_key
-            keyPassword props.openthos123
-
 //            def props = new Properties()
-//            props.load(new FileInputStream(project.file("/root/AndroidStudioProjects/key.store")))
+//            props.load(new FileInputStream(project.file("D:/work_package/2018-12-23-openthos-cloud/key.store")))
 ////            storeFile project.file(props.keyStore)
 //            storePassword props.openthos123
 //            keyAlias props.oto_key
 //            keyPassword props.openthos123
+
+            def props = new Properties()
+            props.load(new FileInputStream(project.file("/root/AndroidStudioProjects/key.store")))
+//            storeFile project.file(props.keyStore)
+            storePassword props.openthos123
+            keyAlias props.oto_key
+            keyPassword props.openthos123
 
 //            def props = new Properties()
 //            props.load(new FileInputStream(project.file("key.properties")))

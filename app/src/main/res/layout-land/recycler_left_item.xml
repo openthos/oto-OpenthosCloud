@@ -2,8 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:gravity="center"
-    android:layout_height="@dimen/openthos_left_button_size"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:focusableInTouchMode="true"
     android:id="@+id/item_list_left">
+
+    <!--android:layout_height="@dimen/openthos_left_button_size"-->
+
 
     <TextView
         android:id="@+id/left_text_item"

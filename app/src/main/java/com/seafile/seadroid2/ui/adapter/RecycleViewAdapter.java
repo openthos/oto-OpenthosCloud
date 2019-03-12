@@ -99,7 +99,6 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
             holder = new RightHolder(view);
 //            mGestureDetector = new GestureDetector(new RecycleItemOnTuch());
             view.setTag(holder);
-            view.setOnFocusChangeListener(new RecycleFocusChange());
         }
         holder = (RightHolder) view.getTag();
         return holder;
@@ -111,8 +110,9 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         SeafItem seafile = items.get(position);
         holder.mRelativeLayout.setTag(seafile);
         holder.mRelativeLayout.setOnTouchListener(this);
+        holder.mRelativeLayout.setOnFocusChangeListener(new RecycleFocusChange());
         if (isLeftRecycle(viewType)) {
-            holder.mRelativeLayout.setBackgroundResource(R.drawable.recycle_item_backgroud);
+//            holder.mRelativeLayout.setBackgroundResource(R.drawable.recycle_item_backgroud);
             holder.mTextViewSize.setText(" -_- ");
         } else {
             holder.mViewIcon.setImageResource(items.get(position).getIcon());
@@ -183,7 +183,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     }
 
     public boolean onTouch(View v, MotionEvent event) {
-        if (MotionEvent.ACTION_DOWN == event.getAction()) {
+//        if (MotionEvent.ACTION_DOWN == event.getAction()) {
             int postion = v.getLayerType();
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
@@ -198,24 +198,33 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 //                    }else {
 //                        v.setBackgroundResource(0);
 //                    };
+
 //                    onRecyclerViewItemClickListener.onRecycleRightMouseClick((int) event.getRawX(), (int) event.getRawY(), (SeafItem) v.getTag(), event, v);
                     onRecyclerViewItemClickListener.onTunchListener((int) event.getRawX(), (int) event.getRawY(), (SeafItem) v.getTag(), event, v);
                     break;
                 case MotionEvent.ACTION_UP:
                     Toast.makeText(mContext,"up event",Toast.LENGTH_LONG).show();
                     break;
+
+
+//                    case MotionEvent.BUTTON_PRIMARY:
+//                        onRecyclerViewItemClickListener.onTunchListener((int) event.getRawX(), (int) event.getRawY(), (SeafItem) v.getTag(), event, v);
+//                        break;
+
+//                    case MotionEvent.BUTTON_SECONDARY:
+////                    new RecycleMenuDialog();
+//                        onRecyclerViewItemClickListener.onRecycleRightMouseClick((int) event.getRawX(), (int) event.getRawY(), (SeafItem) v.getTag(), event, v);
+//                        break;
             }
 
+
             switch (event.getButtonState()){
-                case MotionEvent.BUTTON_PRIMARY:
-                    onRecyclerViewItemClickListener.onTunchListener((int) event.getRawX(), (int) event.getRawY(), (SeafItem) v.getTag(), event, v);
-                    break;
                 case MotionEvent.BUTTON_SECONDARY:
 //                    new RecycleMenuDialog();
                     onRecyclerViewItemClickListener.onRecycleRightMouseClick((int) event.getRawX(), (int) event.getRawY(), (SeafItem) v.getTag(), event, v);
                     break;
             }
-        }
+//        }
 
         return false;
     }
